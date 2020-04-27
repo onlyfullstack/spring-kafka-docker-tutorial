@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class SimpleConsumer {
+public class Consumer {
     @KafkaListener(id = "simple-string-consumer", topics = "simple-string-topic", groupId = "group_id",
             containerFactory = "stringKafkaListenerContainerFactory")
     public void consumeMessage(String message) {
