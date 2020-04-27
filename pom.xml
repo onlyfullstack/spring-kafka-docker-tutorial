@@ -8,8 +8,8 @@
 		<version>2.1.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>io.stockgeeks.springkafka</groupId>
-	<artifactId>spring-kafka-app</artifactId>
+	<groupId>com.onlyfullstack.springkafkaapp</groupId>
+	<artifactId>spring-kafka-docker-tutorial</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Demo project for Spring Boot</description>
 
