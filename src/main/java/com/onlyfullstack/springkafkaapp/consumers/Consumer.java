@@ -16,19 +16,19 @@ public class Consumer {
 
     // group id is used to send the message to only one consumer per group
     // here it only 2 consumer will rcv the message.
-    @KafkaListener(id = "complex-object-consumer", topics = "complex-object-student-topic", groupId = "group_json"
+    @KafkaListener(topics = "complex-object-student-topic", groupId = "group_json"
     , containerFactory = "studentKafkaListenerFactory")
     public void consumeMessage(Student student) {
         log.info("Consumer got Student message: {}", student);
     }
 
-    @KafkaListener(id = "complex-object-consumer1", topics = "complex-object-student-topic", groupId = "group_json1"
+    @KafkaListener(topics = "complex-object-student-topic", groupId = "group_json1"
             , containerFactory = "studentKafkaListenerFactory")
     public void consumeMessage1(Student student) {
         log.info("Consumer got Student message: {}", student);
     }
 
-    @KafkaListener(id = "complex-object-consumer2", topics = "complex-object-student-topic", groupId = "group_json1"
+    @KafkaListener(topics = "complex-object-student-topic", groupId = "group_json1"
             , containerFactory = "studentKafkaListenerFactory")
     public void consumeMessage2(Student student) {
         log.info("Consumer got Student message: {}", student);
