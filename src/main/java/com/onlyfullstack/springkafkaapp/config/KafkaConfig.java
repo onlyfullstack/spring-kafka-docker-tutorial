@@ -60,7 +60,8 @@ public class KafkaConfig {
         return new KafkaTemplate<>(simpleProducerFactory());
     }
 
-
+    //Bean name should be consumerFactory otherwise sprig boot kafka auto config will throw an exception
+    // saying the soring cant not autowire the CunsumerFactory as it found more than 1 beans.
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> config = new HashMap<>();
@@ -74,7 +75,7 @@ public class KafkaConfig {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, String> stringKafkaListenerContainerFactory() {
+    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory();
         factory.setConsumerFactory(consumerFactory());
         return factory;
@@ -92,6 +93,10 @@ public class KafkaConfig {
                 new JsonDeserializer<>(Student.class));
     }
 
+    /*The KafkaMessageListenerContainer receives all message from all topics or partitions on a single thread.
+     The ConcurrentMessageListenerContainer delegates to one or more KafkaMessageListenerContainer instances to provide multi-threaded consumption.
+    https://docs.spring.io/spring-kafka/reference/html/#receiving-messages
+     */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Student> studentKafkaListenerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, Student> factory = new ConcurrentKafkaListenerContainerFactory<>();
